@@ -1,6 +1,7 @@
 package com.kaua.gateway_viacep_cosignado.cotroller;
 
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
+import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
 import com.kaua.gateway_viacep_cosignado.service.BuscarCepService;
@@ -20,7 +21,7 @@ public class BuscarCepController {
     }
 
     @GetMapping("/buscarcep/{cep}")
-    public ResponseEntity<?> buscarCep(@PathVariable String cep) throws NotFoundException, GatewayException {
+    public ResponseEntity<?> buscarCep(@PathVariable String cep) throws NotFoundException, GatewayException, CepInvalidoException {
         ReturnDto respostaCep = buscarCepService.buscarCep(cep);
         return ResponseEntity.ok(respostaCep);
     };
