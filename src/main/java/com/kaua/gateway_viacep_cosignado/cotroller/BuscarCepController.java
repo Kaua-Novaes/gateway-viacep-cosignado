@@ -1,6 +1,8 @@
 package com.kaua.gateway_viacep_cosignado.cotroller;
 
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
+import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
+import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
 import com.kaua.gateway_viacep_cosignado.service.BuscarCepService;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;
@@ -18,7 +20,7 @@ public class BuscarCepController {
     }
 
     @GetMapping("/buscarcep/{cep}")
-    public ResponseEntity<?> buscarCep(@PathVariable String cep){
+    public ResponseEntity<?> buscarCep(@PathVariable String cep) throws NotFoundException, GatewayException {
         ReturnDto respostaCep = buscarCepService.buscarCep(cep);
         return ResponseEntity.ok(respostaCep);
     };
