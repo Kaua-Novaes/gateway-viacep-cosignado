@@ -3,3 +3,7 @@ spring:
     name: gateway-viacep-cosignado
   jackson:
       property-naming-strategy: SNAKE_CASE
+
+integrations:
+  viacep:
+    base-url: https://viacep.com.br/ws
