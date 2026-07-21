@@ -1,11 +1,10 @@
-package com.kaua.gateway_viacep_cosignado.cotroller;
+package com.kaua.gateway_viacep_cosignado.controller;
 
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
 import com.kaua.gateway_viacep_cosignado.service.BuscarCepService;
-import lombok.Getter;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

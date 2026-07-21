@@ -7,7 +7,7 @@ import lombok.Getter;
 public class ReturnDto {
 
     private final String cep;
-    private final String logradouro;
+    private String logradouro;
     private final String complemento;
     private final String bairro;
     private final String localidade;
@@ -18,5 +18,9 @@ public class ReturnDto {
         this.complemento = responseDto.getComplemento();
         this.bairro = responseDto.getBairro();
         this.localidade = responseDto.getLocalidade();
+    }
+
+    public void logradouroToLowerCase(){
+        logradouro = logradouro.toLowerCase();
     }
 }
