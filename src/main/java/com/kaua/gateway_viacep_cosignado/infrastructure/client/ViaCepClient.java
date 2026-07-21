@@ -2,6 +2,7 @@ package com.kaua.gateway_viacep_cosignado.infrastructure.client;
 
 import com.kaua.gateway_viacep_cosignado.domain.gateway.BuscarCepGateway;
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
+import lombok.Getter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
