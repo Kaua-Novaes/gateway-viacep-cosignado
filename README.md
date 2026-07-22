@@ -1,8 +1,5 @@
 # Gateway de Busca ViaCEP
 
-![Java](https://img.shields.io/badge/Java-17-blue)
-![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.7-brightgreen)
-![Tests](https://img.shields.io/badge/Testes-Unit%20%26%20Integration-success)
 
 ## Visão Geral
 
