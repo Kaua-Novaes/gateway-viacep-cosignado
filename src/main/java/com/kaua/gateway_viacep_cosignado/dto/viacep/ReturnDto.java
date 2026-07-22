@@ -11,7 +11,6 @@ import lombok.Getter;
         "complemento",
         "bairro",
         "localidade",
-        "uf"
 })
 public class ReturnDto {
 
