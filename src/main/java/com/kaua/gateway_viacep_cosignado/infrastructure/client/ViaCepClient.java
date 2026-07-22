@@ -5,7 +5,6 @@ import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;

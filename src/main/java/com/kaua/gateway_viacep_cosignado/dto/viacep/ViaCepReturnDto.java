@@ -1,7 +1,6 @@
 package com.kaua.gateway_viacep_cosignado.dto.viacep;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter

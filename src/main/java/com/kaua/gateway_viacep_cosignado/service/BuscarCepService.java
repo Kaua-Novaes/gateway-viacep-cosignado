@@ -2,7 +2,6 @@ package com.kaua.gateway_viacep_cosignado.service;
 
 import com.kaua.gateway_viacep_cosignado.domain.gateway.BuscarCepGateway;
 import com.kaua.gateway_viacep_cosignado.domain.validator.CepValidator;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
 import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;

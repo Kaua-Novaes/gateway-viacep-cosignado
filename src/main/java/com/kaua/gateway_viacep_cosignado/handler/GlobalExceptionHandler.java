@@ -1,6 +1,5 @@
 package com.kaua.gateway_viacep_cosignado.handler;
 
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
 import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.ErrorResponse;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
@@ -17,7 +16,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleExceptio(Exception ex){
         ErrorResponse response = ErrorResponse.builder()
-                .message(ex.getMessage())
+                .message("Ocorreu um erro")
                 .status(HttpStatus.INTERNAL_SERVER_ERROR.value())
                 .build();
 
