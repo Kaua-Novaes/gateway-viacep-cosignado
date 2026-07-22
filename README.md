@@ -23,32 +23,28 @@ A escolha mantém a simplicidade e clareza da aplicação, separando as responsa
 O diagrama abaixo ilustra o fluxo de uma requisição pelas camadas da aplicação:
 
 ```mermaid
-graph TD
-    subgraph "Nossa Aplicação (gateway-viacep-cosignado)"
-        A[Cliente HTTP] --> B(BuscarCepController);
-        B --> C{BuscarCepService};
-
-        subgraph "Validação e Consulta"
-            C -- 1. Normaliza e Valida CEP --> D[CepValidator];
-            C -- 2. Consulta CEP normalizado --> E[ViaCepClient];
-        end
-
-        subgraph "Tratamento de Erros Centralizado"
-            G(GlobalExceptionHandler)
-        end
-        
-        E --> F((API ViaCEP));
-        E -- 3. Retorna resposta --> C;
-        C -- 4. Formata logradouro e retorna --> B;
-
-        B --> A;
-
-        B -. lança exceções .-> G;
-        C -. lança exceções .-> G;
-        E -. lança exceções .-> G;
-        D -. lança exceções .-> G;
-        G -- retorna resposta de erro --> A;
-    end
+flowchart TD
+    Req[Cliente HTTP] -->|GET /api/v1/buscarcep/{cep}| Controller[BuscarCepController]
+    Controller --> Service[BuscarCepService]
+    
+    Service --> Valida{CepValidator: CEP Válido?}
+    Valida -->|Não: Nulo ou Formato Incorreto| ExValida[Lança CepInvalidoException]
+    
+    Valida -->|Sim: 8 Números| Gateway[ViaCepClient]
+    Gateway --> ApiExt((API ViaCEP))
+    
+    ApiExt -->|Falha Conexão / Timeout| ExGateway[Lança GatewayException]
+    ApiExt -->|Sucesso com erro: true| ExNotFound[Lança NotFoundException]
+    ApiExt -->|Sucesso com Dados| Processa[Formata Logradouro em Lowercase]
+    
+    Processa --> RespOk[Retorna 200 OK com ViaCepReturnDto]
+    
+    ExValida --> Handler[GlobalExceptionHandler]
+    ExGateway --> Handler
+    ExNotFound --> Handler
+    
+    Handler -->|CepInvalido / NotFound| Resp404[Retorna 404 Not Found com ErrorResponse]
+    Handler -->|GatewayException| Resp503[Retorna 503 Service Unavailable com ErrorResponse]
 ```
 
 ## Requisitos Atendidos
