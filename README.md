@@ -24,10 +24,10 @@ O diagrama abaixo ilustra o fluxo de uma requisição pelas camadas da aplicaç�
 
 ```mermaid
 flowchart TD
-    Req[Cliente HTTP] -->|GET /api/v1/buscarcep/{cep}| Controller[BuscarCepController]
+    Req[Cliente HTTP] -->|"GET /api/v1/buscarcep/cep"| Controller[BuscarCepController]
     Controller --> Service[BuscarCepService]
     
-    Service --> Valida{CepValidator: CEP Válido?}
+    Service --> Valida{"CepValidator: CEP Válido?"}
     Valida -->|Não: Nulo ou Formato Incorreto| ExValida[Lança CepInvalidoException]
     
     Valida -->|Sim: 8 Números| Gateway[ViaCepClient]
