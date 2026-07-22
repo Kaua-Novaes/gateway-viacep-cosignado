@@ -1,8 +1,8 @@
 package com.kaua.gateway_viacep_cosignado.infrastructure.client;
 
 import com.kaua.gateway_viacep_cosignado.domain.gateway.BuscarCepGateway;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
+import com.kaua.gateway_viacep_cosignado.dto.viacep.ViaCepResponseDto;
+import com.kaua.gateway_viacep_cosignado.dto.viacep.ViaCepReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
 import org.springframework.stereotype.Component;
@@ -21,14 +21,14 @@ public class ViaCepClient implements BuscarCepGateway {
     }
 
     @Override
-    public ReturnDto buscarCep(String cep) throws NotFoundException, GatewayException {
+    public ViaCepReturnDto buscarCep(String cep) throws NotFoundException, GatewayException {
 
         try {
-            ResponseDto respostaApi = restClient
+            ViaCepResponseDto respostaApi = restClient
                     .get()
                     .uri("/{cep}/json", cep)
                     .retrieve()
-                    .body(ResponseDto.class);
+                    .body(ViaCepResponseDto.class);
 
 
             if (respostaApi == null) {
@@ -36,7 +36,7 @@ public class ViaCepClient implements BuscarCepGateway {
             } else if (Objects.equals(respostaApi.getErro(), "true")) {
                 throw new NotFoundException("Não foi possível encontrar um endereço válido");
             }
-            return new ReturnDto(respostaApi);
+            return new ViaCepReturnDto(respostaApi);
 
         }catch (NotFoundException exception){
             throw exception;

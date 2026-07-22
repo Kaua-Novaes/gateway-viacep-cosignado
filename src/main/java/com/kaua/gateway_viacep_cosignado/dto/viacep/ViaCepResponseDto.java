@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ResponseDto {
+public class ViaCepResponseDto {
     private final String cep;
     private final String logradouro;
     private final String complemento;
