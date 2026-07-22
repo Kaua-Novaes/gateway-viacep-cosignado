@@ -5,6 +5,8 @@ import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
 import com.kaua.gateway_viacep_cosignado.service.BuscarCepService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,11 @@ public class BuscarCepController {
         this.buscarCepService = buscarCepService;
     }
 
+    @Operation(summary = "Normzaliza e faz a busca do cep no gateway de busca")
+    @ApiResponse(responseCode = "200", description = "Endereço encontrado")
+    @ApiResponse(responseCode = "400", description = "Endereço não encontrado")
+    @ApiResponse(responseCode = "503", description = "Erro no gateway de busca")
+    @ApiResponse(responseCode = "503", description = "Erro interno")
     @GetMapping("/buscarcep/{cep}")
     public ResponseEntity<?> buscarCep(@PathVariable String cep) throws NotFoundException, GatewayException, CepInvalidoException {
         ReturnDto respostaCep = buscarCepService.buscarCep(cep);
