@@ -22,12 +22,11 @@ public class BuscarCepService {
 
     public ViaCepReturnDto buscarCep(String cep) {
         String cepFormatado = cepValidator.normalizar(cep);
-        cepValidator.validar(cepFormatado);
-        ViaCepReturnDto retoroGateway = buscarCepGateway.buscarCep(cepFormatado);
-        if (retoroGateway.getLogradouro() != null) {
-            retoroGateway.logradouroToLowerCase();
+        ViaCepReturnDto retornoGateway = buscarCepGateway.buscarCep(cepFormatado);
+        if (retornoGateway.getLogradouro() != null) {
+            retornoGateway.logradouroToLowerCase();
         };
-        return retoroGateway;
-    };
+        return retornoGateway;
+    }
 
 }
