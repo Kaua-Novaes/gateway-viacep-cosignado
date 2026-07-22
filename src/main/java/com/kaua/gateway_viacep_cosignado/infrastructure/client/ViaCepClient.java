@@ -10,6 +10,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
 
+import java.util.Objects;
+
 @Component
 public class ViaCepClient implements BuscarCepGateway {
 
@@ -32,7 +34,7 @@ public class ViaCepClient implements BuscarCepGateway {
 
             if (respostaApi == null) {
                 throw new GatewayException("O ViaCEP retornou uma resposta vazia");
-            } else if (respostaApi.getBairro() == null) {
+            } else if (Objects.equals(respostaApi.getErro(), "true")) {
                 throw new NotFoundException("Não foi possível encontrar um endereço válido");
             }
             return new ReturnDto(respostaApi);

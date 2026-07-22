@@ -16,4 +16,5 @@ public class ResponseDto {
     private final String gia;
     private final String ddd;
     private final String siafi;
+    private final String erro;
 }
