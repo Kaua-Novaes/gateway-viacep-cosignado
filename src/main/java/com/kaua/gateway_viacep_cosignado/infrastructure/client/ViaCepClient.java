@@ -1,14 +1,15 @@
 package com.kaua.gateway_viacep_cosignado.infrastructure.client;
 
 import com.kaua.gateway_viacep_cosignado.domain.gateway.BuscarCepGateway;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
+import com.kaua.gateway_viacep_cosignado.dto.viacep.ViaCepResponseDto;
+import com.kaua.gateway_viacep_cosignado.dto.viacep.ViaCepReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
-import lombok.Getter;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 import org.springframework.web.client.RestClientException;
+
+import java.util.Objects;
 
 @Component
 public class ViaCepClient implements BuscarCepGateway {
@@ -20,22 +21,22 @@ public class ViaCepClient implements BuscarCepGateway {
     }
 
     @Override
-    public ReturnDto buscarCep(String cep) throws NotFoundException, GatewayException {
+    public ViaCepReturnDto buscarCep(String cep) {
 
         try {
-            ResponseDto respostaApi = restClient
+            ViaCepResponseDto respostaApi = restClient
                     .get()
                     .uri("/{cep}/json", cep)
                     .retrieve()
-                    .body(ResponseDto.class);
+                    .body(ViaCepResponseDto.class);
 
 
             if (respostaApi == null) {
                 throw new GatewayException("O ViaCEP retornou uma resposta vazia");
-            } else if (respostaApi.getBairro() == null) {
+            } else if (Objects.equals(respostaApi.getErro(), "true")) {
                 throw new NotFoundException("Não foi possível encontrar um endereço válido");
             }
-            return new ReturnDto(respostaApi);
+            return new ViaCepReturnDto(respostaApi);
 
         }catch (NotFoundException exception){
             throw exception;

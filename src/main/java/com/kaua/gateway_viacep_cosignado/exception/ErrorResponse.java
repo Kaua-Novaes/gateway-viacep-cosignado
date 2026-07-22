@@ -11,4 +11,7 @@ public class ErrorResponse {
 
     private String message;
     private Integer status;
+
+    public ErrorResponse(int value, String rotaNãoEncontrada, String s) {
+    }
 }

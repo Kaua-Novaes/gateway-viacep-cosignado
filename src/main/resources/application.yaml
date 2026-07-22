@@ -4,6 +4,10 @@ spring:
   jackson:
       property-naming-strategy: SNAKE_CASE
 
+springdoc:
+  swagger-ui:
+    path: /documentacao
+
 integrations:
   viacep:
     base-url: https://viacep.com.br/ws

@@ -2,8 +2,7 @@ package com.kaua.gateway_viacep_cosignado.service;
 
 import com.kaua.gateway_viacep_cosignado.domain.gateway.BuscarCepGateway;
 import com.kaua.gateway_viacep_cosignado.domain.validator.CepValidator;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ResponseDto;
-import com.kaua.gateway_viacep_cosignado.dto.viacep.ReturnDto;
+import com.kaua.gateway_viacep_cosignado.dto.viacep.ViaCepReturnDto;
 import com.kaua.gateway_viacep_cosignado.exception.CepInvalidoException;
 import com.kaua.gateway_viacep_cosignado.exception.GatewayException;
 import com.kaua.gateway_viacep_cosignado.exception.NotFoundException;
@@ -21,10 +20,13 @@ public class BuscarCepService {
 
     }
 
-    public ReturnDto buscarCep(String cep) throws NotFoundException, GatewayException, CepInvalidoException {
-        cepValidator.validar(cep);
-        ReturnDto retoroGateway = buscarCepGateway.buscarCep(cep);
-        retoroGateway.logradouroToLowerCase();
+    public ViaCepReturnDto buscarCep(String cep) {
+        String cepFormatado = cepValidator.normalizar(cep);
+        cepValidator.validar(cepFormatado);
+        ViaCepReturnDto retoroGateway = buscarCepGateway.buscarCep(cepFormatado);
+        if (retoroGateway.getLogradouro() != null) {
+            retoroGateway.logradouroToLowerCase();
+        };
         return retoroGateway;
     };
 

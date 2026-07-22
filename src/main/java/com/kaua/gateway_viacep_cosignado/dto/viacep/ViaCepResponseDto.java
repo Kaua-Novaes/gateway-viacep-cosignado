@@ -5,7 +5,7 @@ import lombok.Getter;
 
 @AllArgsConstructor
 @Getter
-public class ResponseDto {
+public class ViaCepResponseDto {
     private final String cep;
     private final String logradouro;
     private final String complemento;
@@ -16,4 +16,5 @@ public class ResponseDto {
     private final String gia;
     private final String ddd;
     private final String siafi;
+    private final String erro;
 }

@@ -8,7 +8,7 @@ public class CepValidator {
 
     private static final String CEP_REGEX = "\\d{8}";
 
-    public void validar(String cep) throws CepInvalidoException {
+    public void validar(String cep)  {
         if (cep == null || cep.isBlank()) {
             throw new CepInvalidoException("O CEP é obrigatório");
         }
@@ -22,7 +22,7 @@ public class CepValidator {
         }
     }
 
-    public String normalizar(String cep) throws CepInvalidoException {
+    public String normalizar(String cep)  {
         validar(cep);
         return removerFormatacao(cep);
     }
