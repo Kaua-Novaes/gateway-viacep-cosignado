@@ -29,7 +29,7 @@ public class BuscarCepController {
     @ApiResponse(responseCode = "503", description = "Erro no gateway de busca")
     @ApiResponse(responseCode = "500", description = "Erro interno")
     @GetMapping("/buscarcep/{cep}")
-    public ResponseEntity<?> buscarCep(@PathVariable String cep) throws NotFoundException, GatewayException, CepInvalidoException {
+    public ResponseEntity<?> buscarCep(@PathVariable String cep)  {
         ViaCepReturnDto respostaCep = buscarCepService.buscarCep(cep);
         return ResponseEntity.ok(respostaCep);
     }

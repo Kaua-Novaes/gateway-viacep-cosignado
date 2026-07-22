@@ -21,7 +21,7 @@ public class ViaCepClient implements BuscarCepGateway {
     }
 
     @Override
-    public ViaCepReturnDto buscarCep(String cep) throws NotFoundException, GatewayException {
+    public ViaCepReturnDto buscarCep(String cep) {
 
         try {
             ViaCepResponseDto respostaApi = restClient

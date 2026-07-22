@@ -20,11 +20,13 @@ public class BuscarCepService {
 
     }
 
-    public ViaCepReturnDto buscarCep(String cep) throws NotFoundException, GatewayException, CepInvalidoException {
+    public ViaCepReturnDto buscarCep(String cep) {
         String cepFormatado = cepValidator.normalizar(cep);
         cepValidator.validar(cepFormatado);
         ViaCepReturnDto retoroGateway = buscarCepGateway.buscarCep(cepFormatado);
-        retoroGateway.logradouroToLowerCase();
+        if (retoroGateway.getLogradouro() != null) {
+            retoroGateway.logradouroToLowerCase();
+        };
         return retoroGateway;
     };
 
