@@ -1,9 +1,18 @@
 package com.kaua.gateway_viacep_cosignado.dto.viacep;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
 @Getter
+@JsonPropertyOrder({
+        "cep",
+        "logradouro",
+        "complemento",
+        "bairro",
+        "localidade",
+        "uf"
+})
 public class ReturnDto {
 
     private final String cep;
@@ -23,4 +32,6 @@ public class ReturnDto {
     public void logradouroToLowerCase(){
         logradouro = logradouro.toLowerCase();
     }
+
+
 }
