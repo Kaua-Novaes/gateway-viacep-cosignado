@@ -1,0 +1,9 @@
+services:
+  gateway-viacep:
+    build: .
+    container_name: gateway-viacep-cosignado
+    ports:
+      - "8088:8088"
+    environment:
+      - SERVER_PORT=8088
+    restart: always
