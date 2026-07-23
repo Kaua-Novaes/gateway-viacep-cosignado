@@ -8,6 +8,9 @@ springdoc:
   swagger-ui:
     path: /documentacao
 
+server:
+  forward-headers-strategy: native
+
 integrations:
   viacep:
     base-url: https://viacep.com.br/ws
