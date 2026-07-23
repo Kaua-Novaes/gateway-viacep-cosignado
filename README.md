@@ -2,6 +2,8 @@
 
 Serviço REST desenvolvido em Spring Boot 4 para consulta e saneamento de endereços por CEP. A aplicação atua como um intermediário resiliente para a API pública do ViaCEP, aplicando regras de validação de formato, filtragem de campos desnecessários e padronização do contrato de resposta.
 
+url de documentacao: https://gatewayendereco.cortex-sales.site/documentacao
+
 ## Diagrama de Fluxo
 
 ```mermaid
